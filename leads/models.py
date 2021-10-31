@@ -12,7 +12,7 @@ class Agent(models.Model):
     last_name = models.CharField(max_length=200) """
 
     def __str__(self):
-        return self.user.email
+        return self.user.username
 
 
 class Lead(models.Model):
