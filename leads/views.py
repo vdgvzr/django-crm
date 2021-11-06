@@ -19,3 +19,9 @@ def lead_detail(request, pk):
         "lead": lead,
     }
     return render(request, template, context)
+
+
+def lead_create(request):
+    template= "leads/lead_create.html"
+    context = {}
+    return render(request, template, context)
