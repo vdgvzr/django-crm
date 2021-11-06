@@ -10,3 +10,12 @@ def lead_list(request):
     }
 
     return render(request, template, context)
+
+
+def lead_detail(request, pk):
+    template = "leads/lead_detail.html"
+    lead = Lead.objects.get(id=pk)
+    context = {
+        "lead": lead,
+    }
+    return render(request, template, context)
