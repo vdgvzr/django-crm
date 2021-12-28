@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-    <a class="link" href="/leads/create/">Create a Lead</a>
+    <a class="link" href="{% url 'leads:lead-create' %}">Create a Lead</a>
 
     <hr />
 
@@ -32,7 +32,7 @@
     
     {% for lead in leads %}
         <div class="lead">
-            <a class="link" href="/leads/{{ lead.pk }}/">
+            <a class="link" href="{% url 'leads:lead-detail' lead.pk %}">
                 {{ lead.first_name }} {{ lead.last_name }}
             </a>
             

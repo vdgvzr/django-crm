@@ -7,7 +7,7 @@
     <title>Django CRM</title>
 </head>
 <body>
-    <a href="/leads/">Leads</a>
+    <a href="{% url 'leads:lead-list' %}">Leads</a>
 
     <hr />
 
@@ -20,9 +20,9 @@
     <hr />
 
     <div>
-        <a href="/leads/{{ lead.pk }}/update/">Update</a>
+        <a href="{% url 'leads:lead-update' lead.pk %}">Update</a>
 
-        <a href="/leads/{{ lead.pk }}/delete/">Delete</a>
+        <a href="{% url 'leads:lead-delete' lead.pk %}">Delete</a>
     </div>
 </body>
 </html>
