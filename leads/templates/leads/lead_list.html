@@ -13,17 +13,26 @@
             padding-left: 6px;
             padding-right: 6px;
             margin-top: 10px;
+            margin-bottom: 10px;
             background-color: #f6f6f6;
             width: 100%;
+        }
+
+        .link {
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
+    <a class="link" href="/leads/create/">Create a Lead</a>
+
+    <hr />
+
     <h1>Leads:</h1>
     
     {% for lead in leads %}
         <div class="lead">
-            <a href="/leads/{{ lead.pk }}/">
+            <a class="link" href="/leads/{{ lead.pk }}/">
                 {{ lead.first_name }} {{ lead.last_name }}
             </a>
             
