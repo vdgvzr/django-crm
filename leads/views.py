@@ -58,6 +58,12 @@ def lead_update(request, pk):
     return render(request, template, context)
 
 
+def lead_delete(request, pk):
+    lead = Lead.objects.get(pk=pk)
+    lead.delete()
+    return redirect("/leads")
+
+
 ''' def lead_update(request, pk):
     template = "leads/lead_update.html"
     lead = Lead.objects.get(pk=pk)
