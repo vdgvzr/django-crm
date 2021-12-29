@@ -1,33 +1,65 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import reverse
 from .models import Lead
 from .forms import LeadModelForm
+from django.views.generic import (
+    TemplateView,
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 
-def landing_page(request):
+class LandingPageView(TemplateView):
+    template_name = "landing.html"
+
+
+''' def landing_page(request):
     template = "landing.html"
-    return render(request, template)
+    return render(request, template) '''
 
 
-def lead_list(request):
+class LeadListView(ListView):
+    template_name = "leads/lead_list.html"
+    queryset = Lead.objects.all()
+    context_object_name = "leads"
+
+
+''' def lead_list(request):
     template = "leads/lead_list.html"
     leads = Lead.objects.all()
     context = {
         "leads": leads,
     }
 
-    return render(request, template, context)
+    return render(request, template, context) '''
 
 
-def lead_detail(request, pk):
+class LeadDetailView(DetailView):
+    template_name = "leads/lead_detail.html"
+    queryset = Lead.objects.all()
+    context_object_name = "lead"
+
+
+''' def lead_detail(request, pk):
     template = "leads/lead_detail.html"
     lead = Lead.objects.get(id=pk)
     context = {
         "lead": lead,
     }
-    return render(request, template, context)
+    return render(request, template, context) '''
 
 
-def lead_create(request):
+class LeadCreateView(CreateView):
+    template_name = "leads/lead_create.html"
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+
+
+''' def lead_create(request):
     template = "leads/lead_create.html"
     form = LeadModelForm()
 
@@ -41,10 +73,19 @@ def lead_create(request):
     context = {
         "form": form
     }
-    return render(request, template, context)
+    return render(request, template, context) '''
 
 
-def lead_update(request, pk):
+class LeadUpdateView(UpdateView):
+    template_name = "leads/lead_update.html"
+    queryset = Lead.objects.all()
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+
+
+''' def lead_update(request, pk):
     template = "leads/lead_update.html"
     lead = Lead.objects.get(pk=pk)
     form = LeadModelForm(instance=lead)
@@ -60,13 +101,35 @@ def lead_update(request, pk):
         "lead": lead,
         "form": form
     }
-    return render(request, template, context)
+    return render(request, template, context) '''
 
 
-def lead_delete(request, pk):
+class LeadDeleteView(DeleteView):
+    template_name = "leads/lead_delete.html"
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+
+
+''' def lead_delete(request, pk):
     lead = Lead.objects.get(pk=pk)
     lead.delete()
-    return redirect("/leads")
+    return redirect("/leads") '''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ''' def lead_update(request, pk):
