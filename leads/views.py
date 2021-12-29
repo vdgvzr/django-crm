@@ -1,17 +1,10 @@
 from django.shortcuts import reverse
 from .models import Lead
 from .forms import LeadModelForm
-from django.views.generic import (
-    TemplateView,
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView,
-)
+from django.views import generic
 
 
-class LandingPageView(TemplateView):
+class LandingPageView(generic.TemplateView):
     template_name = "landing.html"
 
 
@@ -20,7 +13,7 @@ class LandingPageView(TemplateView):
     return render(request, template) '''
 
 
-class LeadListView(ListView):
+class LeadListView(generic.ListView):
     template_name = "leads/lead_list.html"
     queryset = Lead.objects.all()
     context_object_name = "leads"
@@ -36,7 +29,7 @@ class LeadListView(ListView):
     return render(request, template, context) '''
 
 
-class LeadDetailView(DetailView):
+class LeadDetailView(generic.DetailView):
     template_name = "leads/lead_detail.html"
     queryset = Lead.objects.all()
     context_object_name = "lead"
@@ -51,7 +44,7 @@ class LeadDetailView(DetailView):
     return render(request, template, context) '''
 
 
-class LeadCreateView(CreateView):
+class LeadCreateView(generic.CreateView):
     template_name = "leads/lead_create.html"
     form_class = LeadModelForm
 
@@ -76,7 +69,7 @@ class LeadCreateView(CreateView):
     return render(request, template, context) '''
 
 
-class LeadUpdateView(UpdateView):
+class LeadUpdateView(generic.UpdateView):
     template_name = "leads/lead_update.html"
     queryset = Lead.objects.all()
     form_class = LeadModelForm
@@ -104,7 +97,7 @@ class LeadUpdateView(UpdateView):
     return render(request, template, context) '''
 
 
-class LeadDeleteView(DeleteView):
+class LeadDeleteView(generic.DeleteView):
     template_name = "leads/lead_delete.html"
     queryset = Lead.objects.all()
 
