@@ -17,8 +17,6 @@ class UserProfile(models.Model):
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.user.username
