@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # Local Apps
     'leads',
+    'agents',
 ]
 
 MIDDLEWARE = [
